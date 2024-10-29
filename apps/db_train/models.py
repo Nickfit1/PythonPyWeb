@@ -16,6 +16,7 @@ class AuthorProfile(models.Model):
     def __str__(self):
         return f"Автор: {self.author.username}; Стаж: {self.stage} лет"
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=50,
                             verbose_name="Название",
@@ -26,10 +27,12 @@ class Tag(models.Model):
 class Entry(models.Model):
     text = models.TextField(verbose_name="Текст статьи")
     author = models.ForeignKey("Author", on_delete=models.CASCADE, related_name='entries')
-    tags = models.ManyToManyField("Tag", related_name='entries'),
+    tags = models.ManyToManyField("Tag", related_name='entries')
 
     def __str__(self):
-        return f"Автор: {self.author}"
+        return f"Статья: {self.text}"
+
+
 
 
 class Author(models.Model):
